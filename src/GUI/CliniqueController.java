@@ -101,7 +101,7 @@ public class CliniqueController implements Initializable {
           tt.setCellValueFactory(new PropertyValueFactory<>("nomcl"));
           oo.setCellValueFactory(new PropertyValueFactory<>("adressecl"));
           ss.setCellValueFactory(new PropertyValueFactory<>("numerocl"));
-          ds.setCellValueFactory(new PropertyValueFactory<>("numerocl"));
+          ds.setCellValueFactory(new PropertyValueFactory<>("desccl"));
             
         RECl.setItems(list);
     }
@@ -111,7 +111,7 @@ public class CliniqueController implements Initializable {
          ServiceClinique r = new ServiceClinique();
         int i=parseInt(desc.getText());
         r.ajouter(new Clinique(type.getText(),sujet.getText(),i,user.getText()));
-        JOptionPane.showMessageDialog(null,user.getText()+" ,"+"Vote clinique est bien ajoutée");
+        JOptionPane.showMessageDialog(null, "Votre clinique est bien ajoutée");
          list.clear();
                 initialiserlist(); 
                 afficher();
@@ -150,13 +150,20 @@ public class CliniqueController implements Initializable {
 
            
 
-           if (!Pattern.matches("[A-z]*", type.getText())) {
+           if (!Pattern.matches("[A-z]*", sujet.getText())) {
                 showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez l'adresse ! ");
+                sujet.requestFocus();
+                sujet.selectEnd();
+                return false;
+                
+            }if (!Pattern.matches("[A-z]*", type.getText())) {
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le nom ! ");
                 type.requestFocus();
                 type.selectEnd();
                 return false;
+                
             }if (!Pattern.matches("[A-z]*", user.getText())) {
-                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le prix ! ");
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez la description!");
                 user.requestFocus();
                 user.selectEnd();
                 return false;
@@ -183,7 +190,7 @@ try {
             pst= cnx.prepareStatement(sql);
             pst.execute();
                
-            JOptionPane.showMessageDialog(null, "Update");
+            JOptionPane.showMessageDialog(null, "Votre clinique est bien modifiée");
             type1.setText("");
             
     type.setText("");
@@ -247,7 +254,7 @@ try {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information");
                 alert.setHeaderText(null);
-                alert.setContentText("Votre clinique est bien supprimeée");
+                alert.setContentText("Votre clinique est bien supprimée");
                 alert.showAndWait();
              
                 list.clear();

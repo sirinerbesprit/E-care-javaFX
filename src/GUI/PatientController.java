@@ -119,18 +119,18 @@ public class PatientController implements Initializable {
            
 
            if (!Pattern.matches("[A-z]*", type.getText())) {
-                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez l'adresse ! ");
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le nom ! ");
                 type.requestFocus();
                 type.selectEnd();
                 return false;
             }if (!Pattern.matches("[A-z]*", user.getText())) {
-                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le prix ! ");
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez l'adresse ! ");
                 user.requestFocus();
                 user.selectEnd();
                 return false;
             }
             if (!Pattern.matches("[A-z]*", sujet.getText())) {
-                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le prix ! ");
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez l'adresse mail ! ");
                 sujet.requestFocus();
                 sujet.selectEnd();
                 return false;
@@ -146,7 +146,7 @@ public class PatientController implements Initializable {
         
         int i=parseInt(desc.getText());
         r.ajouter(new Patient(prod.getValue(),type.getText(),sujet.getText(),i,user.getText()));
-        JOptionPane.showMessageDialog(null,user.getText()+" ,"+"vote reclamation Ajoutée");
+        JOptionPane.showMessageDialog(null, "Bien ajouté");
          list.clear();
                 initialiserlist(); 
                 afficher();
@@ -185,7 +185,7 @@ public class PatientController implements Initializable {
             pst.execute();
                 list.clear();
               
-            JOptionPane.showMessageDialog(null, "Update");
+            JOptionPane.showMessageDialog(null, "Bien modifié");
             iddd.setText("");
             
     type.setText("");
@@ -244,7 +244,7 @@ public class PatientController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information");
                     alert.setHeaderText(null);
-                    alert.setContentText("Reclamation deleted");
+                    alert.setContentText("Bien supprimé");
                     alert.showAndWait();
                     list.clear();
                     initialiserlist(); 

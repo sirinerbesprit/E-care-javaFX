@@ -18,7 +18,7 @@
       <TextField fx:id="desc" layoutX="413.0" layoutY="114.0" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #9AEEEC;" />
       <TextField fx:id="user" layoutX="412.0" layoutY="163.0" style="-fx-background-color: #9AEEEC;" />
       <ComboBox fx:id="prod" layoutX="141.0" layoutY="66.0" prefHeight="25.0" prefWidth="177.0" promptText="Choisissez votre clinique !" />
-      <Button fx:id="ajout" layoutX="636.0" layoutY="256.0" mnemonicParsing="false" onAction="#Ajout" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #3cdc3e;" text="Ajouter" textFill="WHITE" />
+      <Button fx:id="ajout" layoutX="636.0" layoutY="256.0" mnemonicParsing="false" onAction="#Ajout" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #3cdc3e;" text="Confirmer" textFill="WHITE" />
       <Button fx:id="btnu" layoutX="636.0" layoutY="317.0" mnemonicParsing="false" onAction="#Edit" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #f4be1c;" text="Modifier" textFill="#f2f2f2" />
       <TableView fx:id="RECl" layoutX="189.0" layoutY="217.0" onMouseClicked="#getSelected" prefHeight="217.0" prefWidth="361.0">
          <columns>

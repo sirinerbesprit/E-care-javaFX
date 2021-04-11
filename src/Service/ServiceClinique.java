@@ -30,7 +30,7 @@ import javafx.stage.FileChooser;
 import static jdk.nashorn.internal.runtime.Debug.id;
 /**
  *
- * @author USER
+ * @author Siwar Boutaleb
  */
 public class ServiceClinique {
 Connection cnx = DataSource.getInstance().getCnx();
