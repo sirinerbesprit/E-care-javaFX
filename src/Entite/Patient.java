@@ -30,6 +30,10 @@ public class Patient {
            this.adresse =adresse;
        
        
+    } 
+      public Patient() {
+      
+       
     }
       int id ;
       int clinique_id;

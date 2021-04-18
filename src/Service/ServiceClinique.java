@@ -70,55 +70,7 @@ Connection cnx = DataSource.getInstance().getCnx();
             System.err.println(ex.getMessage());
         }   
     }
-      /*  public BarChart loadChart() {
-        int nbr = getNbrClinique();
-         NumberAxis xAxis = new NumberAxis();
-     CategoryAxis yAxis = new CategoryAxis();
-      String itemA = "Attendance";
-      String itemB = "CT_Marks";
-      String itemC = "Assignment";
-      String itemD = "Others";
-     Statement statement = null;
-     int i=1;
-     int j=2;
-  XYChart.Data<String, Number> data =  new XYChart.Data<String, Number>();
-  Pane pane=new Pane();
-  pane.setPrefSize(600, 500);
-  BarChart<String,Number> bchart=new BarChart<String,Number>(yAxis, xAxis);
-  bchart.setPrefSize(550, 450);
-  bchart.setTitle("Summary");
-     xAxis.setLabel("Values");
-     xAxis.setTickLabelRotation(45);
-     yAxis.setTickLabelRotation(45);
-     yAxis.setLabel("Menus");
-     XYChart.Series series1 = new XYChart.Series();
-     XYChart.Series series2 = new XYChart.Series();
-        try{
-         String sql="select id_rec, from Clinique";
-         ResultSet rset=statement.executeQuery(sql);
-         while(rset.next()){
-           XYChart.Data<String, Number> datax =  new XYChart.Data<String, Number>(rset.getString(i),nbr);
-             System.out.println("nbr="+nbr);
-            double totale = getNbrFeedback4()+getNbrClinique();
-         series1.getData().add(new XYChart.Data("Cliniques",getNbrClinique()));
-         series1.getData().add(new XYChart.Data("% des techniciens", (getNbrClinique()/totale)*100));
-         series1.getData().add(new XYChart.Data("% des techniciens", (getNbrFeedback4()/totale)*100));
-
-         DecimalFormat df = new DecimalFormat("0.00");
-        
-          
-          
-         } i++;j++;
       
-        }catch(Exception e){
-        
-        }
-     bchart.getData().addAll(series1);
-     pane.getChildren().add(bchart);
-    
-   return bchart;
-    }
-*/
  
     public int getNbrClinique() {
         String sql="SELECT COUNT(*) FROM Clinique";
@@ -175,7 +127,7 @@ Connection cnx = DataSource.getInstance().getCnx();
             pre.setInt(5, r.getId());
              
             pre.executeUpdate();
-            System.out.println("Clinique Modfié !");
+            System.out.println("Clinique Modfiée !");
         } catch(SQLException ex) {
             System.err.println(ex.getMessage());
         }   

@@ -60,6 +60,81 @@ Connection cnx = DataSource.getInstance().getCnx();
         }  
     
     }
+     public int getNbr() {
+        String sql="SELECT COUNT(*) FROM `patient` ";
+        ResultSet rs;
+        int countIdFed=0;
+        try {
+            PreparedStatement st= cnx.prepareStatement(sql);
+			ResultSet res= st.executeQuery(); 
+                        while(res.next()) {
+                           countIdFed= res.getInt(1);
+                        }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return countIdFed;
+    }
+       public int getNbrclinique1() {
+        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=19";
+        ResultSet rs;
+        int countIdFed=0;
+        try {
+            PreparedStatement st= cnx.prepareStatement(sql);
+			ResultSet res= st.executeQuery(); 
+                        while(res.next()) {
+                           countIdFed= res.getInt(1);
+                        }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return countIdFed;
+    }
+           public int getNbrclinique2() {
+        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=26";
+        ResultSet rs;
+        int countIdFed=0;
+        try {
+            PreparedStatement st= cnx.prepareStatement(sql);
+			ResultSet res= st.executeQuery(); 
+                        while(res.next()) {
+                           countIdFed= res.getInt(1);
+                        }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return countIdFed;
+    }
+               public int getNbrclinique3() {
+        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=27";
+        ResultSet rs;
+        int countIdFed=0;
+        try {
+            PreparedStatement st= cnx.prepareStatement(sql);
+			ResultSet res= st.executeQuery(); 
+                        while(res.next()) {
+                           countIdFed= res.getInt(1);
+                        }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return countIdFed;
+    }
+                    public int getNbrclinique4() {
+        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=29";
+        ResultSet rs;
+        int countIdFed=0;
+        try {
+            PreparedStatement st= cnx.prepareStatement(sql);
+			ResultSet res= st.executeQuery(); 
+                        while(res.next()) {
+                           countIdFed= res.getInt(1);
+                        }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return countIdFed;
+    }
 
      public void supprimerr(int id) {
  try {

@@ -5,15 +5,19 @@
  */
 package GUI;
 
+import Entite.Clinique;
 import Entite.Patient;
 import Utils.DataSource;
 import java.awt.HeadlessException;
+import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +25,14 @@ import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,8 +40,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
+import service.ServiceClinique;
 import service.ServicePatient;
 
 /**
@@ -53,10 +68,15 @@ public class PatientController implements Initializable {
     private TextField prod1;
     @FXML
     private ComboBox<Integer> prod;
+    
+    @FXML
+    private AnchorPane  recpane;
     @FXML
     private Button ajout;
     @FXML
     private Button btnu;
+    @FXML
+    private Button clinique;
     @FXML
     private TableView<Patient> RECl;
     @FXML
@@ -72,8 +92,6 @@ public class PatientController implements Initializable {
     @FXML
     private TableColumn<?, ?> dt;
     @FXML
-    private TableColumn<?, ?> dtt;
-    @FXML
     private TableColumn<?, ?> usr;
     @FXML
     private Button supprimer;
@@ -87,6 +105,8 @@ public class PatientController implements Initializable {
     ObservableList<Patient> list = FXCollections.observableArrayList();
     @FXML
     private TextField iddd;
+    @FXML
+    private TextField filterField;
     /**
      * Initializes the controller class.
      */
@@ -129,7 +149,13 @@ public class PatientController implements Initializable {
                 user.selectEnd();
                 return false;
             }
-            if (!Pattern.matches("[A-z]*", sujet.getText())) {
+            if (!Pattern.matches("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", desc.getText())) {
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le numero ! ");
+                desc.requestFocus();
+                desc.selectEnd();
+                return false;
+            }
+            if (!Pattern.matches("\\w{3,}@\\S+", sujet.getText()))  {
                 showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez l'adresse mail ! ");
                 sujet.requestFocus();
                 sujet.selectEnd();
@@ -138,6 +164,53 @@ public class PatientController implements Initializable {
            
         }
         return true;
+    }
+    @FXML
+  public void recherche(){
+    ServicePatient re= new ServicePatient() ;
+    List<Patient>results = new ArrayList<>();
+    results = re.afficher();
+     FilteredList<Patient> filteredData = new FilteredList<>(list , b -> true);
+		Patient r = new Patient();
+		// 2. Set the filter Predicate whenever the filter changes.
+		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(patient -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (patient.getAdresse().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (patient.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+                                 else if (patient.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+                                 
+				else if (String.valueOf(r.getName()).indexOf(lowerCaseFilter)!=-1)
+				     return true;
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Patient> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(RECl.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		RECl.setItems(sortedData);
+               
+        
     }
     @FXML
     private void Ajout(ActionEvent event) throws SQLException {
@@ -154,6 +227,25 @@ public class PatientController implements Initializable {
                 initialiserlist(); 
                 afficher();
                 RECl.refresh();
+                Image img = new Image(getClass().getResourceAsStream("notif.png")) ;
+                
+                Notifications notificationBuilder = Notifications.create()
+                
+                        .title("Patient Ajouté")
+                        .text("Saved in your DATABASE").darkStyle()
+             .graphic(new ImageView(img))
+   // .graphic(null)
+                        
+                        .hideAfter(Duration.seconds(15))
+                        .position(Pos.TOP_RIGHT)
+                        .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+               System.out.println("Clicked on notification");
+            }
+        });
+                notificationBuilder.darkStyle();
+                notificationBuilder.show();
     }}
  private void afficher(){
           dd.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -183,9 +275,12 @@ public class PatientController implements Initializable {
                     value3+"',adresse= '"+value8+"',phone= '"+value4+"' where id='"+value0+"' ";
             pst= cnx.prepareStatement(sql);
             pst.execute();
-                list.clear();
+               
               
             JOptionPane.showMessageDialog(null, "Bien modifié");
+             
+           
+             
             iddd.setText("");
             
     type.setText("");
@@ -197,15 +292,16 @@ public class PatientController implements Initializable {
     user.setText("");
      list.clear();
                 initialiserlist(); 
-                afficher(); 
+                afficher();
+                list.clear();
+                initialiserlist(); 
+                afficher();
                 RECl.refresh();
             
         } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        initialiserlist(); 
-                afficher();
-                RECl.refresh();
+         
     
     }
 
@@ -289,4 +385,10 @@ public class PatientController implements Initializable {
            
            }
         }   
+  
+    @FXML
+    private void clinique(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("AffClinique.fxml"));
+           recpane.getChildren().setAll(pane);
+    }
 }

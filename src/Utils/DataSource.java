@@ -66,7 +66,7 @@ public class DataSource {
         Connection conn = ConnectDb();
         ObservableList<Clinique> list = FXCollections.observableArrayList();
         try {
-            PreparedStatement ps = conn.prepareStatement("select * from reclamation");
+            PreparedStatement ps = conn.prepareStatement("select * from clinique");
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()){   

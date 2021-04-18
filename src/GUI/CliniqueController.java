@@ -9,21 +9,29 @@ import Entite.Clinique;
 import Entite.Patient;
 import Utils.DataSource;
 import java.awt.HeadlessException;
+import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,8 +39,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
 import service.ServiceClinique;
 import service.ServicePatient;
 
@@ -84,6 +97,12 @@ public class CliniqueController implements Initializable {
     ObservableList<Clinique> list = FXCollections.observableArrayList();
     @FXML
     private TextField type1;
+    @FXML
+    private TextField filterField;
+    @FXML
+    private Button stats;
+    @FXML
+    private AnchorPane recpane;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -96,6 +115,52 @@ public class CliniqueController implements Initializable {
        
            afficher();    
     }    
+    @FXML
+     public void recherche(){
+    ServiceClinique re= new ServiceClinique() ;
+    List<Clinique>results = new ArrayList<>();
+    results = re.afficher();
+     FilteredList<Clinique> filteredData = new FilteredList<>(list , b -> true);
+		Clinique r = new Clinique();
+		// 2. Set the filter Predicate whenever the filter changes.
+		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(clinique -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (clinique.getAdressecl().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (clinique.getDesccl().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+                                 else if (clinique.getNomcl().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+				else if (String.valueOf(r.getDesccl()).indexOf(lowerCaseFilter)!=-1)
+				     return true;
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Clinique> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(RECl.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		RECl.setItems(sortedData);
+               
+        
+    }
  private void afficher(){
           dd.setCellValueFactory(new PropertyValueFactory<>("id"));
           tt.setCellValueFactory(new PropertyValueFactory<>("nomcl"));
@@ -119,13 +184,32 @@ public class CliniqueController implements Initializable {
                 initialiserlist(); 
                 afficher();
                 RECl.refresh();
+                Image img = new Image(getClass().getResourceAsStream("notif.png")) ;
+                
+                Notifications notificationBuilder = Notifications.create()
+                
+                        .title("Clinique Ajouté")
+                        .text("Saved in your DATABASE").darkStyle()
+             .graphic(new ImageView(img))
+   // .graphic(null)
+                        
+                        .hideAfter(Duration.seconds(15))
+                        .position(Pos.TOP_RIGHT)
+                        .onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+               System.out.println("Clicked on notification");
+            }
+        });
+                notificationBuilder.darkStyle();
+                notificationBuilder.show();
     }}
       public void initialiserlist() throws SQLException{
              try {
             Connection cnx = DataSource.getInstance().getCnx();
             ResultSet rs = cnx.createStatement().executeQuery("SELECT * FROM clinique");
             while(rs.next()){
-             list.add(new Clinique( rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(4)));
+             list.add(new Clinique( rs.getInt(1),rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
        }
             } catch (SQLException ex) {
             Logger.getLogger(CliniqueController.class.getName()).log(Level.SEVERE, null, ex);
@@ -142,7 +226,7 @@ public class CliniqueController implements Initializable {
     }
  private boolean controleDeSaisi() {  
 
-        if (type.getText().isEmpty() || user.getText().isEmpty()
+        if (type.getText().isEmpty() || user.getText().isEmpty() || desc.getText().isEmpty()
                 || sujet.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Données erronés", "Verifier les données", "Veuillez bien remplir tous les champs !");
             return false;
@@ -168,6 +252,12 @@ public class CliniqueController implements Initializable {
                 user.selectEnd();
                 return false;
             }
+            if (!Pattern.matches("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", desc.getText())) {
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le numero ! ");
+                desc.requestFocus();
+                desc.selectEnd();
+                return false;
+            }
            
         }
         return true;
@@ -186,7 +276,7 @@ try {
             String value4 = desc.getText();
             String value8 = user.getText();
             String sql = "update clinique set nomcl= '"+value1+"',adressecl= '"+
-                    value3+"',desccl= '"+value3+"',numerocl= '"+value8+"' where id='"+value0+"' ";
+                    value3+"',desccl= '"+value8+"',numerocl= '"+value4+"' where id='"+value0+"' ";
             pst= cnx.prepareStatement(sql);
             pst.execute();
                
@@ -199,20 +289,17 @@ try {
     desc.setText("");
     
     user.setText("");
-       list.clear();
-                initialiserlist(); 
+              initialiserlist(); 
                 afficher();
                 list.clear();
                 initialiserlist(); 
                 afficher();
                 RECl.refresh();
-    
-     } catch (HeadlessException | SQLException e) {
+            
+        } catch (HeadlessException | SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        initialiserlist(); 
-                afficher();
-                RECl.refresh();
+         
     }
 
     @FXML
@@ -279,4 +366,10 @@ try {
 
 
     }     
+
+    @FXML
+    private void stats(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("statistics.fxml"));
+           recpane.getChildren().setAll(pane);
+    }
 }

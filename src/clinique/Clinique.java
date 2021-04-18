@@ -35,7 +35,7 @@ public class Clinique extends Application {
     @Override
     public void start(Stage primaryStage) {
        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Clinique.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/Clinique.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setTitle("AddMembre");
