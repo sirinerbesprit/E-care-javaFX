@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pharmacie.javafx;
+package commentairecrud;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,17 +13,18 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author User
+ * @author Mohamed
  */
-public class PharmacieJavaFX extends Application {
+public class CommentaireCRUD extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Gestion des Pharmacies");
+        
         stage.setScene(scene);
+       
         stage.show();
     }
 
