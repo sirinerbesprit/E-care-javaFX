@@ -79,7 +79,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <TableView fx:id="tvCommentaire" layoutX="372.0" layoutY="71.0" onMouseClicked="#handleMouseAction" prefHeight="319.0" prefWidth="697.0">
+      <TableView fx:id="tvCommentaire" layoutX="372.0" layoutY="71.0" onMouseClicked="#handleMouseAction" prefHeight="235.0" prefWidth="697.0">
         <columns>
             <TableColumn fx:id="colId" minWidth="0.0" prefWidth="72.0" text="Id" />
           <TableColumn fx:id="colPseudo" prefWidth="75.0" text="Pseudo" />
@@ -88,5 +88,7 @@
             <TableColumn fx:id="colQuestion" minWidth="0.0" prefWidth="275.0" text="Question" />
         </columns>
       </TableView>
+      <Button layoutX="658.0" layoutY="374.0" mnemonicParsing="false" onAction="#Reply" prefHeight="36.0" prefWidth="111.0" text="Reply" />
+      <TextField fx:id="tsrechercher" layoutX="372.0" layoutY="27.0" prefHeight="31.0" prefWidth="199.0" promptText="rechercher" />
    </children>
 </AnchorPane>

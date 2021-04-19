@@ -5,6 +5,7 @@
  */
 package commentairecrud;
     
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,15 +14,22 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -58,6 +66,8 @@ public class MainController implements Initializable {
     private TableColumn<Commentaire, String> colMedecin;
     @FXML
     private TableColumn<Commentaire, String> colQuestion;
+    @FXML
+    private TextField tsrechercher;
     
     
     @FXML
@@ -116,10 +126,47 @@ public void showCommentaire(){
      
      
      tvCommentaire.setItems(list);
+       FilteredList<Commentaire> filteredData = new FilteredList<>(list,b-> true);
+       tsrechercher.textProperty().addListener((observable,oldvalue,newvalue) -> {
+        filteredData.setPredicate((Commentaire Commentaire) -> {
+            if (newvalue==null || newvalue.isEmpty()){
+                return true;
+            }
+            String lowerCaseFilter = newvalue.toLowerCase();
+                
+            if (Commentaire.getPseudo().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+            return true; 
+            } if (String.valueOf(Commentaire.getSujet()).contains(lowerCaseFilter)) {
+            return true; 
+            }
+            if (String.valueOf(Commentaire.getQuestion()).contains(lowerCaseFilter)) {
+            return true; 
+            }
+            else  
+             return false; 
+            });
+        tvCommentaire.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+    if (newSelection != null) {
+       tfId.setText(String.valueOf(newSelection.getId()));
+      tfPseudo.setText(String.valueOf(newSelection.getPseudo()));
+       tfSujet.setText(String.valueOf(newSelection.getSujet()));
+       tfMedecin.setText(String.valueOf(newSelection.getMedecin()));
+       tfQuestion.setText(String.valueOf(newSelection.getQuestion()));
+                  
+    }
+});
+            
+        SortedList<Commentaire> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvCommentaire.comparatorProperty());
+        tvCommentaire.setItems(sortedData); 
+        });
+
+    }
+
      
      
     
-}
+
 private void InsertRecord(){
 String query = "INSERT INTO commentaire VALUES ('"+ tfId.getText()+"','"+tfPseudo.getText()+"','"+tfSujet.getText()+"','"+tfMedecin.getText()+"','"+tfQuestion.getText()+"')";
 executeQuery(query);
@@ -165,4 +212,16 @@ private void deleteButton(){
        
         
     }
+    @FXML
+    private void Reply(ActionEvent event) throws IOException {
+         Parent d_page = FXMLLoader.load(getClass().getResource("Reponse.fxml"));
+        Scene s = new Scene(d_page);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+ 
+                app_stage.hide(); //optional
+                app_stage.setScene(s);
+                app_stage.show();
+        
+    }
+    
 }

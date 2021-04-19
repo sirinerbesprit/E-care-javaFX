@@ -5,72 +5,66 @@
  */
 package commentairecrud;
 
-import java.util.Date;
-
 /**
  *
  * @author Mohamed
  */
-
-
-
-   public class reponse {
-   private  Integer id;
+class reponse {
+     private  Integer id;
    private  String pseudo;
    private  String rep;
    private  String date_rep;  
    private  Integer commentaire_id;
 
-        public reponse(Integer id, String pseudo, String rep, String date_rep, Integer commentaire_id) {
-            this.id = id;
-            this.pseudo = pseudo;
-            this.rep = rep;
-            this.date_rep = date_rep;
-            this.commentaire_id = commentaire_id;
-        }
+    public reponse(Integer id, String pseudo, String rep, String date_rep, Integer commentaire_id) {
+        this.id = id;
+        this.pseudo = pseudo;
+        this.rep = rep;
+        this.date_rep = date_rep;
+        this.commentaire_id = commentaire_id;
+    }
 
-        public Integer getId() {
-            return id;
-        }
+    public Integer getId() {
+        return id;
+    }
 
-        public String getPseudo() {
-            return pseudo;
-        }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-        public String getRep() {
-            return rep;
-        }
+    public String getPseudo() {
+        return pseudo;
+    }
 
-        public String getDate_rep() {
-            return date_rep;
-        }
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
 
-        public Integer getCommentaire_id() {
-            return commentaire_id;
-        }
+    public String getRep() {
+        return rep;
+    }
 
-        public void setId(Integer id) {
-            this.id = id;
-        }
+    public void setRep(String rep) {
+        this.rep = rep;
+    }
 
-        public void setPseudo(String pseudo) {
-            this.pseudo = pseudo;
-        }
+    public String getDate_rep() {
+        return date_rep;
+    }
 
-        public void setRep(String rep) {
-            this.rep = rep;
-        }
+    public void setDate_rep(String date_rep) {
+        this.date_rep = date_rep;
+    }
 
-        public void setDate_rep(String date_rep) {
-            this.date_rep = date_rep;
-        }
+    public Integer getCommentaire_id() {
+        return commentaire_id;
+    }
 
-        public void setCommentaire_id(Integer commentaire_id) {
-            this.commentaire_id = commentaire_id;
-        }
-
-       
+    public void setCommentaire_id(Integer commentaire_id) {
+        this.commentaire_id = commentaire_id;
+    }
    
 }
-   
 
+
+ 
