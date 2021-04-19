@@ -5,6 +5,8 @@
  */
 package e.care;
 
+import entites.livraison;
+import entites.panier;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -14,6 +16,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,6 +76,8 @@ public class LivraisonController implements Initializable {
     private Button btnupdate;
     @FXML
     private Button btndelete;
+    @FXML
+    private TextField tsrechercher;
 
     /**
      * Initializes the controller class.
@@ -135,8 +141,50 @@ public void Showlivraison(){
         comessage.setCellValueFactory(new PropertyValueFactory<>("message"));
            cocommandeid.setCellValueFactory(new PropertyValueFactory<>("commande_id"));
       tvlivraison.setItems(list);
+      
+      
+    
+       FilteredList<livraison> filteredData = new FilteredList<>(list,b-> true);
+       tsrechercher.textProperty().addListener((observable,oldvalue,newvalue) -> {
+        filteredData.setPredicate((livraison livraison ) -> {
+            if (newvalue==null || newvalue.isEmpty()){
+                return true;
+            }
+            String lowerCaseFilter = newvalue.toLowerCase();
+                
+            if (livraison.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+            return true; 
+            } if (String.valueOf(livraison.getAdresse()).contains(lowerCaseFilter)) {
+            return true; 
+            }
+            if (String.valueOf(livraison.getNumero()).contains(lowerCaseFilter)) {
+            return true; 
+            }
+            else  
+             return false; 
+            });
+        tvlivraison.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+    if (newSelection != null) {
+       tfid.setText(String.valueOf(newSelection.getId()));
+       tfnom.setText(String.valueOf(newSelection.getNom()));
+       tfadreesse.setText(String.valueOf(newSelection.getAdresse()));
+       tfnumero.setText(String.valueOf(newSelection.getNumero()));;
+       tfmessage.setText(String.valueOf(newSelection.getMessage()));
+       tfmail.setText(String.valueOf(newSelection.getMail()));
+       tfcommande.setText(String.valueOf(newSelection.getCommande_id()));
+                  
+    }
+});
+            
+        SortedList<livraison> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvlivraison.comparatorProperty());
+        tvlivraison.setItems(sortedData); 
+        });
 
-}
+    }
+      
+
+
 private void InsertRecord(){
 String query = "INSERT INTO livraison VALUES ('"+ tfid.getText()+"','"+tfnom.getText()+"','"+tfadreesse.getText()+"','"+tfnumero.getText()+"','"+tfmail.getText()+"','"+tfmessage.getText()+"','"+tfcommande.getText()+"')";
 executeQuery(query);

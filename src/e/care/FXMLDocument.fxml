@@ -54,6 +54,8 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="btnretour" layoutX="103.0" layoutY="453.0" mnemonicParsing="false" onMouseClicked="#retour" text="aller au commandes" />
+      <Button fx:id="btnretour" layoutX="101.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#retour" text="aller au commandes" />
+      <TextField fx:id="tsrechercher" layoutX="481.0" layoutY="546.0" promptText="recherches" />
+      <Button layoutX="101.0" layoutY="396.0" mnemonicParsing="false" onAction="#confirmer" prefHeight="38.0" prefWidth="123.0" text="confirmer panier" />
    </children>
 </AnchorPane>

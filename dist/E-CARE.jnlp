@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="E-CARE.jar" size="2467521" download="eager" />
+    <jar href="E-CARE.jar" size="2474852" download="eager" />
+    <jar href="lib\javax.mail-1.6.1.jar" size="654100" download="eager" />
     <jar href="lib\mysql-connector-java-8.0.23.jar" size="2415211" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="E-CARE" >

@@ -6,6 +6,7 @@
 package e.care;
 
 
+import entites.panier;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -68,6 +72,8 @@ public class FXMLDocumentController implements Initializable {
     private Button btndelete;
       @FXML
     private Button btnretour;
+    @FXML
+    private TextField tsrechercher;
     
     
     @FXML
@@ -127,12 +133,65 @@ public void Showpanier(){
      colprixtotal.setCellValueFactory(new PropertyValueFactory<>("prix_tot"));
      colproduit.setCellValueFactory(new PropertyValueFactory<>("produits"));
       tvlist.setItems(list);
+      
+      
+       tvlist.setItems(list);
+       FilteredList<panier> filteredData = new FilteredList<>(list,b-> true);
+       tsrechercher.textProperty().addListener((observable,oldvalue,newvalue) -> {
+        filteredData.setPredicate((panier panier) -> {
+            if (newvalue==null || newvalue.isEmpty()){
+                return true;
+            }
+            String lowerCaseFilter = newvalue.toLowerCase();
+                
+            if (panier.getCode_panier().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+            return true; 
+            } if (String.valueOf(panier.getPrix_tot()).contains(lowerCaseFilter)) {
+            return true; 
+            }
+            if (String.valueOf(panier.getProduits()).contains(lowerCaseFilter)) {
+            return true; 
+            }
+            else  
+             return false; 
+            });
+        tvlist.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+    if (newSelection != null) {
+       tfid.setText(String.valueOf(newSelection.getId()));
+       tfcodepanier.setText(String.valueOf(newSelection.getCode_panier()));
+       tfquantite.setText(String.valueOf(newSelection.getQuantite()));
+       tfproduit.setText(String.valueOf(newSelection.getProduits()));
+       tfprixtotal.setText(String.valueOf(newSelection.getPrix_tot()));
+                  
+    }
+});
+            
+        SortedList<panier> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvlist.comparatorProperty());
+        tvlist.setItems(sortedData); 
+        });
 
-}
+    }
+      
+      
+
+
 private void InsertRecord(){
+    if(((tfid.getText().isEmpty() || tfcodepanier.getText()== null|| tfquantite.getText()== null|| tfprixtotal.getText()== null)) )
+         { 
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+             alert.setTitle("data invalide");
+             alert.setHeaderText("Erreur de saisie");
+             alert.setContentText("Verifier les champs vides");
+             
+             alert.showAndWait();
+         }
+         
+         
+          else{
 String query = "INSERT INTO panier VALUES ('"+ tfid.getText()+"','"+tfcodepanier.getText()+"','"+tfquantite.getText()+"','"+tfprixtotal.getText()+"','"+tfproduit.getText()+"')";
 executeQuery(query);
-Showpanier();}
+Showpanier();}}
 
 
 
@@ -175,6 +234,17 @@ tfproduit.setText(""+paniers.getProduits());
     @FXML
     private void retour(MouseEvent event) throws IOException {
  Parent d_page = FXMLLoader.load(getClass().getResource("livraison.fxml"));
+        Scene s = new Scene(d_page);
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+ 
+                app_stage.hide(); //optional
+                app_stage.setScene(s);
+                app_stage.show();
+    }
+
+    @FXML
+    private void confirmer(ActionEvent event) throws IOException {
+        Parent d_page = FXMLLoader.load(getClass().getResource("Mail.fxml"));
         Scene s = new Scene(d_page);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
  
