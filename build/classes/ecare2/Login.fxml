@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="752.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="ecare2.LoginController">
+    <stylesheets>
+        <URL value="@login.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="584.0" prefWidth="317.0" style="-fx-background-color: #FB937C;">
+         <children>
+            <ImageView fitHeight="252.0" fitWidth="276.0" layoutX="32.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="login" layoutX="445.0" layoutY="168.0" promptText="Login">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="password" layoutX="445.0" layoutY="242.0" promptText="Password">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <FontAwesomeIcon fill="#f61e00" iconName="USER" layoutX="406.0" layoutY="193.0" size="25">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </FontAwesomeIcon>
+      <FontAwesomeIcon fill="#f61e00" iconName="KEY" layoutX="405.0" layoutY="268.0" size="25" />
+      <Button layoutX="504.0" layoutY="324.0" mnemonicParsing="false" prefWidth="73.0" style="-fx-background-color: #FAD108;" text="Login">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Text fill="#e71212" layoutX="531.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Or" />
+      <Button layoutX="500.0" layoutY="449.0" mnemonicParsing="false" style="-fx-background-color: #FAD108;">
+         <graphic>
+            <FontAwesomeIcon fontSmoothingType="LCD" iconName="GOOGLE" selectionFill="#ec0000" size="18" />
+         </graphic>
+      </Button>
+      <Button layoutX="547.0" layoutY="449.0" mnemonicParsing="false" style="-fx-background-color: #FAD108;">
+         <graphic>
+            <FontAwesomeIcon fontSmoothingType="LCD" iconName="FACEBOOK" selectionFill="#ec0000" size="18" />
+         </graphic>
+      </Button>
+      <Text layoutX="471.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not a member yet ? " />
+      <Button layoutX="580.0" layoutY="517.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="58.0" style="-fx-background-color: #FAD108;" text="Sign Up">
+         <effect>
+            <Blend />
+         </effect>
+      </Button>
+      <FontAwesomeIcon fill="#f61e00" iconName="USERS" layoutX="508.0" layoutY="86.0" size="50" />
+   </children>
+</AnchorPane>

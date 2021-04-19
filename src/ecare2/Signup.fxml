@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="ecare2.SignupController">
+    <stylesheets>
+        <URL value="@signup.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="584.0" prefWidth="286.0" style="-fx-background-color: #FB937C;">
+         <children>
+            <ImageView fitHeight="252.0" fitWidth="276.0" layoutX="22.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <FontAwesomeIcon fill="#f61e00" iconName="USERS" layoutX="413.0" layoutY="42.0" size="40" wrappingWidth="49.57136917114258" />
+      <TextField fx:id="login" layoutX="364.0" layoutY="64.0" promptText="Login" />
+      <TextField fx:id="cin" layoutX="363.0" layoutY="265.0" promptText="Cin" />
+      <TextField fx:id="sexe" layoutX="363.0" layoutY="225.0" promptText="Sexe" />
+      <TextField fx:id="nom" layoutX="363.0" layoutY="144.0" promptText="Nom" />
+      <TextField fx:id="prenom" layoutX="363.0" layoutY="185.0" promptText="Prenom" />
+      <TextField fx:id="adresse" layoutX="363.0" layoutY="303.0" promptText="Adresse" />
+      <TextField fx:id="num" layoutX="363.0" layoutY="340.0" promptText="Num" />
+      <TextField fx:id="email" layoutX="363.0" layoutY="379.0" promptText="Email" />
+      <Button fx:id="signup" layoutX="402.0" layoutY="448.0" mnemonicParsing="false" prefWidth="73.0" style="-fx-background-color: #FAD108;" text="Signup">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Text fill="#e71212" layoutX="432.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Or" />
+      <Button fx:id="google" layoutX="402.0" layoutY="536.0" mnemonicParsing="false" style="-fx-background-color: #FAD108;">
+         <graphic>
+            <FontAwesomeIcon fontSmoothingType="LCD" iconName="GOOGLE" selectionFill="#ec0000" size="18" />
+         </graphic>
+      </Button>
+      <Button fx:id="facebook" layoutX="445.0" layoutY="536.0" mnemonicParsing="false" style="-fx-background-color: #FAD108;">
+         <graphic>
+            <FontAwesomeIcon fx:id="facebook" fontSmoothingType="LCD" iconName="FACEBOOK" selectionFill="#ec0000" size="18" />
+         </graphic>
+      </Button>
+      <PasswordField fx:id="password" layoutX="364.0" layoutY="103.0" promptText="Password" />
+   </children>
+</AnchorPane>
