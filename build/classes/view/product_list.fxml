@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import com.gluonhq.charm.glisten.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<StackPane fx:id="root" maxHeight="-Infinity" style="-fx-background-color: white;" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane fx:id="parent" prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <JFXListView fx:id="productListView" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </BorderPane.margin>
+            </JFXListView>
+         </center>
+         <bottom>
+             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <JFXButton style="-fx-background-color: #e0ebf9;" fx:id="addProduct" buttonType="RAISED" onAction="#onAddProduct" prefHeight="31.0" prefWidth="210.0" text="Add" />
+                  <JFXButton style="-fx-background-color: #e0ebf9;" fx:id="cancel" buttonType="RAISED" onAction="#onCancel" prefHeight="31.0" prefWidth="66.0" text="Cancel" />
+               </children>
+            </HBox>
+         </bottom>
+         <top>
+            <BorderPane prefWidth="200.0" BorderPane.alignment="CENTER">
+               <right>
+                  <JFXComboBox fx:id="sortComboBox" onAction="#onChange" promptText="Sort By" BorderPane.alignment="CENTER" />
+               </right>
+               <top>
+                  <Label text="Product" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="AppleMyungjo Regular" size="18.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <HBox spacing="5.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Icon fx:id="searchIcon" content="HELP_OUTLINE" />
+                        <JFXTextField fx:id="searchField" promptText="Search" />
+                        <JFXButton style="-fx-background-color: #e0ebf9;" fx:id="export" buttonType="RAISED" onAction="#onExport" prefHeight="31.0" prefWidth="66.0" text="Export" />
+                     </children>
+                  </HBox>
+               </center>
+            </BorderPane>
+         </top>
+      </BorderPane>
+      <JFXDialog fx:id="dialog" />
+   </children>
+</StackPane>
