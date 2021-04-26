@@ -106,7 +106,7 @@ Connection cnx = DataSource.getInstance().getCnx();
         return countIdFed;
     }
                public int getNbrclinique3() {
-        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=27";
+        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=30";
         ResultSet rs;
         int countIdFed=0;
         try {
@@ -121,7 +121,7 @@ Connection cnx = DataSource.getInstance().getCnx();
         return countIdFed;
     }
                     public int getNbrclinique4() {
-        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=29";
+        String sql="SELECT COUNT(*) FROM `patient` where clinique_id=32";
         ResultSet rs;
         int countIdFed=0;
         try {
@@ -142,62 +142,12 @@ Connection cnx = DataSource.getInstance().getCnx();
             PreparedStatement pst = cnx.prepareStatement(req);
            
             pst.executeUpdate();
-            System.out.println("Patient Supprimée !");
+            System.out.println("Patient Supprimé !");
         } catch(SQLException ex) {
             System.err.println(ex.getMessage());
         }   
     }
-      /*  public BarChart loadChart() {
-        int nbr = getNbrPatient();
-         NumberAxis xAxis = new NumberAxis();
-     CategoryAxis yAxis = new CategoryAxis();
-      String itemA = "Attendance";
-      String itemB = "CT_Marks";
-      String itemC = "Assignment";
-      String itemD = "Others";
-     Statement statement = null;
-     int i=1;
-     int j=2;
-  XYChart.Data<String, Number> data =  new XYChart.Data<String, Number>();
-  Pane pane=new Pane();
-  pane.setPrefSize(600, 500);
-  BarChart<String,Number> bchart=new BarChart<String,Number>(yAxis, xAxis);
-  bchart.setPrefSize(550, 450);
-  bchart.setTitle("Summary");
-     xAxis.setLabel("Values");
-     xAxis.setTickLabelRotation(45);
-     yAxis.setTickLabelRotation(45);
-     yAxis.setLabel("Menus");
-     XYChart.Series series1 = new XYChart.Series();
-     XYChart.Series series2 = new XYChart.Series();
-        try{
-         String sql="select id_rec, from Patient";
-         ResultSet rset=statement.executeQuery(sql);
-         while(rset.next()){
-           XYChart.Data<String, Number> datax =  new XYChart.Data<String, Number>(rset.getString(i),nbr);
-             System.out.println("nbr="+nbr);
-            double totale = getNbrFeedback4()+getNbrPatient();
-         series1.getData().add(new XYChart.Data("Patients",getNbrPatient()));
-         series1.getData().add(new XYChart.Data("% des techniciens", (getNbrPatient()/totale)*100));
-         series1.getData().add(new XYChart.Data("% des techniciens", (getNbrFeedback4()/totale)*100));
-
-         DecimalFormat df = new DecimalFormat("0.00");
-        
-          
-          
-         } i++;j++;
-      
-        }catch(Exception e){
-        
-        }
-     bchart.getData().addAll(series1);
-     pane.getChildren().add(bchart);
-    
-   return bchart;
-    }
-*/
- 
-    public int getNbrPatient() {
+   public int getNbrPatient() {
         String sql="SELECT COUNT(*) FROM Patient";
         ResultSet rs;
         int countIdRec=0;
@@ -222,7 +172,7 @@ Connection cnx = DataSource.getInstance().getCnx();
             PreparedStatement pst = cnx.prepareStatement(req);
             pst.setInt(1, r.getId());
             pst.executeUpdate();
-            System.out.println("Patient Supprimée !");
+            System.out.println("Patient Supprimé !");
         } catch(SQLException ex) {
             System.err.println(ex.getMessage());
         }   

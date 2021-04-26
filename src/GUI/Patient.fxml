@@ -6,28 +6,28 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" fx:id="recpane" prefHeight="454.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PatientController">
    <children>
       <Text layoutX="95.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="109.6031494140625" />
-      <Text layoutX="85.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliniques" />
       <Text layoutX="95.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail" />
       <TextField fx:id="type" layoutX="142.0" layoutY="113.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #9AEEEC;" />
       <TextField fx:id="sujet" layoutX="144.0" layoutY="163.0" style="-fx-background-color: #9AEEEC;" />
       <TextField fx:id="desc" layoutX="413.0" layoutY="114.0" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #9AEEEC;" />
       <TextField fx:id="user" layoutX="412.0" layoutY="163.0" style="-fx-background-color: #9AEEEC;" />
-      <ComboBox fx:id="prod" layoutX="141.0" layoutY="66.0" prefHeight="25.0" prefWidth="177.0" promptText="Choisissez votre clinique !" />
-      <Button fx:id="ajout" layoutX="582.0" layoutY="256.0" mnemonicParsing="false" onAction="#Ajout" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #3cdc3e;" text="Confirmer" textFill="WHITE" />
-      <Button fx:id="btnu" layoutX="582.0" layoutY="317.0" mnemonicParsing="false" onAction="#Edit" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #f4be1c;" text="Modifier" textFill="#f2f2f2" />
-      <TableView fx:id="RECl" layoutX="171.0" layoutY="250.0" onMouseClicked="#getSelected" prefHeight="186.0" prefWidth="380.0">
+      <ComboBox fx:id="prod" layoutX="141.0" layoutY="67.0" prefHeight="25.0" prefWidth="177.0" promptText="Choisissez votre clinique !" />
+      <Button fx:id="ajout" layoutX="582.0" layoutY="293.0" mnemonicParsing="false" onAction="#Ajout" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #3cdc3e;" text="Confirmer" textFill="WHITE" />
+      <Button fx:id="btnu" layoutX="582.0" layoutY="340.0" mnemonicParsing="false" onAction="#Edit" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #f4be1c;" text="Modifier" textFill="#f2f2f2" />
+      <TableView fx:id="RECl" layoutX="141.0" layoutY="256.0" onMouseClicked="#getSelected" prefHeight="186.0" prefWidth="404.0">
          <columns>
             <TableColumn fx:id="dd" prefWidth="53.60002136230469" text="id" visible="false" />
             <TableColumn fx:id="tt" prefWidth="64.800048828125" text="clinique" />
-            <TableColumn fx:id="oo" prefWidth="86.39996337890625" text="Nom" />
-            <TableColumn fx:id="ss" minWidth="9.60003662109375" prefWidth="92.79998779296875" text="E-mail" />
+            <TableColumn fx:id="oo" prefWidth="72.0" text="Nom" />
+            <TableColumn fx:id="ss" minWidth="9.60003662109375" prefWidth="96.0" text="E-mail" />
             <TableColumn fx:id="ds" prefWidth="64.0" text="Numéro" />
-            <TableColumn fx:id="dt" minWidth="0.0" prefWidth="49.0" text="Adresse" />
+            <TableColumn fx:id="dt" minWidth="0.0" prefWidth="61.0" text="Adresse" />
             <TableColumn fx:id="usr" prefWidth="60.0" text="user" visible="false" />
          </columns>
       </TableView>
@@ -36,7 +36,10 @@
       <Text layoutX="357.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro" />
       <Text layoutX="358.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" />
       <Text layoutX="265.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id" visible="false" />
-      <TextField fx:id="filterField" layoutX="295.0" layoutY="208.0" onKeyTyped="#recherche" />
-      <Button layoutX="487.0" layoutY="40.0" mnemonicParsing="false" onAction="#clinique" text="clinique" />
+      <TextField fx:id="filterField" layoutX="275.0" layoutY="215.0" onKeyTyped="#recherche" />
+      <Button layoutX="668.0" layoutY="13.0" mnemonicParsing="false" onAction="#clinique" prefHeight="34.0" prefWidth="78.0" style="-fx-background-color: #0097a7;" text="Retour" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
    </children>
 </AnchorPane>

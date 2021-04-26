@@ -188,7 +188,7 @@ public class CliniqueController implements Initializable {
                 
                 Notifications notificationBuilder = Notifications.create()
                 
-                        .title("Clinique Ajouté")
+                        .title("Clinique Ajoutée")
                         .text("Saved in your DATABASE").darkStyle()
              .graphic(new ImageView(img))
    // .graphic(null)
@@ -253,7 +253,7 @@ public class CliniqueController implements Initializable {
                 return false;
             }
             if (!Pattern.matches("[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]", desc.getText())) {
-                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le numero ! ");
+                showAlert(Alert.AlertType.ERROR, "Données ", "Verifier les données", "Vérifiez le numéro ! ");
                 desc.requestFocus();
                 desc.selectEnd();
                 return false;

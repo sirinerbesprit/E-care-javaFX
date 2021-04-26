@@ -59,8 +59,9 @@ public class StatisticsController implements Initializable {
         set1.getData().add(new BarChart.Data("carthagene",o.getNbrclinique1()));
         
         set1.getData().add(new BarChart.Data("nour",o.getNbrclinique2()));
-        set1.getData().add(new BarChart.Data("elissa",o.getNbrclinique3()));
-        set1.getData().add(new BarChart.Data("abouloubeba",o.getNbrclinique4()));
+        set1.getData().add(new BarChart.Data("abouloubeba",o.getNbrclinique3()));
+        set1.getData().add(new BarChart.Data("elissa",o.getNbrclinique4()));
+        
         rt.getData().addAll(set1);
         // TODO
     }    

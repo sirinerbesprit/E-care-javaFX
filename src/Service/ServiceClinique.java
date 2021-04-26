@@ -51,7 +51,7 @@ Connection cnx = DataSource.getInstance().getCnx();
             pre.setString(4, r.getDesccl());
          
             pre.executeUpdate();
-            System.out.println("clinique Ajoutée !");
+            System.out.println("Clinique ajoutée !");
             
         } catch(SQLException ex) {
             System.err.println(ex.getMessage());

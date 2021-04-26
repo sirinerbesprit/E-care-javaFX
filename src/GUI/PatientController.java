@@ -219,7 +219,7 @@ public class PatientController implements Initializable {
         
         int i=parseInt(desc.getText());
         r.ajouter(new Patient(prod.getValue(),type.getText(),sujet.getText(),i,user.getText()));
-        JOptionPane.showMessageDialog(null, "Bien ajouté");
+        JOptionPane.showMessageDialog(null, "Merci de choisir notre clinique , Veuillez patienter l'arrivage de l'ambulance.");
          list.clear();
                 initialiserlist(); 
                 afficher();

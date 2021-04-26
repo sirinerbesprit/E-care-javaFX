@@ -11,16 +11,16 @@
 
 <AnchorPane id="AnchorPane" fx:id="recpane" prefHeight="502.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CliniqueController">
    <children>
-      <Text layoutX="77.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="109.6031494140625" />
+      <Text layoutX="72.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom" wrappingWidth="109.6031494140625" />
       <Text layoutX="31.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="objet" visible="false" />
-      <Text layoutX="71.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" />
-      <TextField fx:id="type" layoutX="120.0" layoutY="83.0" style="-fx-background-color: #9AEEEC;" />
-      <TextField fx:id="sujet" layoutX="120.0" layoutY="132.0" style="-fx-background-color: #9AEEEC;" />
-      <TextField fx:id="desc" layoutX="377.0" layoutY="82.0" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #9AEEEC;" />
-      <TextField fx:id="user" layoutX="377.0" layoutY="132.0" style="-fx-background-color: #9AEEEC;" />
+      <Text layoutX="69.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse" />
+      <TextField fx:id="type" layoutX="120.0" layoutY="121.0" style="-fx-background-color: #9AEEEC;" />
+      <TextField fx:id="sujet" layoutX="120.0" layoutY="172.0" style="-fx-background-color: #9AEEEC;" />
+      <TextField fx:id="desc" layoutX="377.0" layoutY="120.0" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: #9AEEEC;" />
+      <TextField fx:id="user" layoutX="377.0" layoutY="168.0" style="-fx-background-color: #9AEEEC;" />
       <ComboBox fx:id="prod" layoutX="77.0" layoutY="83.0" prefWidth="150.0" promptText="les stades" visible="false" />
-      <Button fx:id="ajout" layoutX="567.0" layoutY="97.0" mnemonicParsing="false" onAction="#Ajout" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #3cdc3e;" text="Ajouter" textFill="WHITE" />
-      <Button fx:id="btnu" layoutX="567.0" layoutY="253.0" mnemonicParsing="false" onAction="#Edit" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #f4be1c;" text="Modifier" textFill="#f2f2f2" />
+      <Button fx:id="ajout" layoutX="567.0" layoutY="140.0" mnemonicParsing="false" onAction="#Ajout" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #3cdc3e;" text="Ajouter" textFill="WHITE" />
+      <Button fx:id="btnu" layoutX="567.0" layoutY="316.0" mnemonicParsing="false" onAction="#Edit" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #f4be1c;" text="Modifier" textFill="#f2f2f2" />
       <TableView fx:id="RECl" layoutX="127.0" layoutY="260.0" onMouseClicked="#getSelected" prefHeight="230.0" prefWidth="412.0">
          <columns>
             <TableColumn fx:id="dd" prefWidth="53.60002136230469" text="id" visible="false" />
@@ -30,17 +30,17 @@
             <TableColumn fx:id="ds" prefWidth="106.0" text="Description" />
          </columns>
       </TableView>
-      <Button fx:id="supprimer" layoutX="567.0" layoutY="316.0" mnemonicParsing="false" onAction="#supprimerrc" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #ff2104;" text="Supprimer" textFill="WHITE" />
-      <Text layoutX="311.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro" />
-      <Text layoutX="298.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+      <Button fx:id="supprimer" layoutX="567.0" layoutY="363.0" mnemonicParsing="false" onAction="#supprimerrc" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #ff2104;" text="Supprimer" textFill="WHITE" />
+      <Text layoutX="311.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numéro" />
+      <Text layoutX="303.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
       <TextField fx:id="type1" layoutX="269.0" layoutY="180.0" style="-fx-background-color: #9AEEEC;" visible="false" />
       <Text layoutX="227.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id" visible="false" wrappingWidth="43.58203125" />
-      <Text layoutX="184.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des cliniques" textAlignment="CENTER">
+      <Text layoutX="195.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion des cliniques" textAlignment="CENTER">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
       <TextField fx:id="filterField" layoutX="259.0" layoutY="226.0" onKeyTyped="#recherche" />
-      <Button fx:id="stats" layoutX="33.0" layoutY="253.0" mnemonicParsing="false" onAction="#stats" prefHeight="36.0" prefWidth="87.0" style="-fx-background-color: #ff2104;" text="statistiques" textFill="WHITE" />
+      <Button fx:id="stats" layoutX="14.0" layoutY="316.0" mnemonicParsing="false" onAction="#stats" prefHeight="36.0" prefWidth="110.0" style="-fx-background-color: #ff5722;" text="Les statistiques" textFill="WHITE" />
    </children>
 </AnchorPane>
