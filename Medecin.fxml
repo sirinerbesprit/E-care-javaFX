@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="596.0" prefWidth="792.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ecare2.MedecinController">
+    <stylesheets>
+        <URL value="@medecin.css" />
+    </stylesheets>
+   <children>
+      <Text layoutX="278.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Medecin">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Text>
+      <Button fx:id="back" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="56.0" style="-fx-background-color: #09CCCB;" text="Back">
+         <graphic>
+            <FontAwesomeIcon iconName="BACKWARD" />
+         </graphic>
+      </Button>
+      <ImageView fitHeight="191.0" fitWidth="249.0" layoutX="594.0" layoutY="-42.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableview" layoutX="132.0" layoutY="124.0" onMouseClicked="#handleMouseAction" prefHeight="218.0" prefWidth="528.0">
+        <columns>
+          <TableColumn fx:id="nom" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="prenom" prefWidth="75.0" text="Prenom" />
+            <TableColumn fx:id="specialite" prefWidth="75.0" text="Specialité" />
+            <TableColumn fx:id="adresse" prefWidth="75.0" text="Adresse" />
+            <TableColumn fx:id="sexe" prefWidth="75.0" text="Sexe" />
+            <TableColumn fx:id="num" prefWidth="75.0" text="Num" />
+            <TableColumn fx:id="cin" prefWidth="75.0" text="Cin" />
+        </columns>
+      </TableView>
+      <Button fx:id="add" layoutX="670.0" layoutY="530.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #09CCCB;" text="Add " />
+      <Button fx:id="update" layoutX="660.0" layoutY="358.0" mnemonicParsing="false" onAction="#update" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #09CCCB;" text="Update" />
+      <Button fx:id="delete" layoutX="660.0" layoutY="428.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="86.0" style="-fx-background-color: #09CCCB;" text="Delete" />
+      <VBox layoutX="42.0" layoutY="364.0" prefHeight="119.0" prefWidth="254.0">
+         <children>
+            <TextField fx:id="nomtext" prefHeight="26.0" prefWidth="86.0" promptText="Nom" />
+            <TextField fx:id="prenomtext" prefHeight="26.0" prefWidth="86.0" promptText="Prenom" />
+            <TextField fx:id="specialitetext" prefHeight="26.0" prefWidth="86.0" promptText="Specialité" />
+            <TextField fx:id="adressetext" prefHeight="26.0" prefWidth="86.0" promptText="Adresse" />
+            <TextField fx:id="sexetext" prefHeight="26.0" prefWidth="86.0" promptText="Sexe" />
+            <TextField fx:id="numtext" prefHeight="26.0" prefWidth="86.0" promptText="Num" />
+            <TextField fx:id="cintext" prefHeight="26.0" prefWidth="86.0" promptText="Cin" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
