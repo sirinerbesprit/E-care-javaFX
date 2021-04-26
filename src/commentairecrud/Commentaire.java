@@ -10,6 +10,10 @@ package commentairecrud;
  * @author Mohamed
  */
 public class Commentaire {
+
+    static void clear() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    private  Integer id;
    private  String pseudo;
    private  String sujet;
@@ -24,6 +28,16 @@ public class Commentaire {
         this.question = question;
     }
 
+    Commentaire() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Commentaire(String text, String text0, String text1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+   
     public int getId() {
         return id;
     }
@@ -63,6 +77,16 @@ public class Commentaire {
     public void setQuestion(String question) {
         this.question = question;
     }
+
+    void ajouter(Commentaire commentaire) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString() {
+        return  "\n\n Pseudo :" + pseudo + "\n\n  Sujet :" + sujet + "\n\n Medecin :" + medecin + "\n\n Question :" + question +" "  ;
+    }
+    
    
 
   

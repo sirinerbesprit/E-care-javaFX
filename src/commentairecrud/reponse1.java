@@ -9,19 +9,19 @@ package commentairecrud;
  *
  * @author Mohamed
  */
-class reponse {
-     private  Integer id;
+public class reponse1 {
+    private  Integer id;
+     private  Integer commentaire_id;
    private  String pseudo;
    private  String rep;
-   private  String date_rep;  
-   private  Integer commentaire_id;
+   private  String date_rep; 
 
-    public reponse(Integer id, String pseudo, String rep, String date_rep, Integer commentaire_id) {
+    public reponse1(Integer id, Integer commentaire_id, String pseudo, String rep, String date_rep) {
         this.id = id;
+        this.commentaire_id = commentaire_id;
         this.pseudo = pseudo;
         this.rep = rep;
         this.date_rep = date_rep;
-        this.commentaire_id = commentaire_id;
     }
 
     public Integer getId() {
@@ -30,6 +30,14 @@ class reponse {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getCommentaire_id() {
+        return commentaire_id;
+    }
+
+    public void setCommentaire_id(Integer commentaire_id) {
+        this.commentaire_id = commentaire_id;
     }
 
     public String getPseudo() {
@@ -56,15 +64,10 @@ class reponse {
         this.date_rep = date_rep;
     }
 
-    public Integer getCommentaire_id() {
-        return commentaire_id;
-    }
-
-    public void setCommentaire_id(Integer commentaire_id) {
-        this.commentaire_id = commentaire_id;
+    @Override
+    public String toString() {
+        return  "\n\n Commentaire id :" + commentaire_id + "\n\n Pseudo :" + pseudo + "\n\n Rep :" + rep + "\n\n Date rep :" + date_rep + "";
     }
    
+    
 }
-
-
- 

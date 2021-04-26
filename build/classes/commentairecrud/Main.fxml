@@ -2,8 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,16 +10,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="518.0" prefWidth="1072.0" style="-fx-background-color: bbdefb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="commentairecrud.MainController">
+<AnchorPane id="AnchorPane" prefHeight="852.0" prefWidth="820.0" style="-fx-background-color: bbdefb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="commentairecrud.MainController">
    <children>
+       
       <VBox prefHeight="200.0" prefWidth="100.0" />
-      <VBox layoutX="50.0" layoutY="73.0" prefHeight="243.0" prefWidth="128.0" spacing="15.0">
+      <VBox layoutX="50.0" layoutY="70.0" prefHeight="250.0" prefWidth="134.0" spacing="15.0">
          <children>
-            <Label text="Id">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
             <Label text="Pseudo">
                <font>
                   <Font size="25.0" />
@@ -43,16 +38,15 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="189.0" layoutY="73.0" prefHeight="200.0" prefWidth="160.0" spacing="20.0">
+      <VBox layoutX="189.0" layoutY="80.0" prefHeight="228.0" prefWidth="294.0" spacing="20.0">
          <children>
-            <TextField fx:id="tfId" />
             <TextField fx:id="tfPseudo" layoutX="10.0" layoutY="10.0" />
             <TextField fx:id="tfSujet" layoutX="10.0" layoutY="41.0" />
             <TextField fx:id="tfMedecin" layoutX="10.0" layoutY="72.0" />
             <TextField fx:id="tfQuestion" />
          </children>
       </VBox>
-      <Button fx:id="btnInsert" layoutX="7.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="48.0" prefWidth="121.0" text="Insert">
+      <Button fx:id="btnInsert" layoutX="531.0" layoutY="269.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="233.0" text="Publier votre question!">
          <graphic>
             <ImageView fitHeight="75.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -61,7 +55,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnUpdate" layoutX="134.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="111.0" text="Update">
+      <Button fx:id="btnUpdate" layoutX="25.0" layoutY="694.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="233.0" text="Modifier votre question!">
          <graphic>
             <ImageView fitHeight="122.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -70,25 +64,27 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btnDelete" layoutX="253.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="111.0" text="Delete">
-         <graphic>
-            <ImageView fitHeight="52.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@icons8-delete-trash-50.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <TableView fx:id="tvCommentaire" layoutX="372.0" layoutY="71.0" onMouseClicked="#handleMouseAction" prefHeight="235.0" prefWidth="697.0">
-        <columns>
-            <TableColumn fx:id="colId" minWidth="0.0" prefWidth="72.0" text="Id" />
-          <TableColumn fx:id="colPseudo" prefWidth="75.0" text="Pseudo" />
-          <TableColumn fx:id="colSujet" prefWidth="138.0" text="Sujet" />
-            <TableColumn fx:id="colMedecin" minWidth="3.0" prefWidth="135.0" text="Medecin" />
-            <TableColumn fx:id="colQuestion" minWidth="0.0" prefWidth="275.0" text="Question" />
-        </columns>
-      </TableView>
-      <Button layoutX="687.0" layoutY="383.0" mnemonicParsing="false" onAction="#Reply" prefHeight="36.0" prefWidth="96.0" text="Reply" />
-      <TextField fx:id="tsrechercher" layoutX="654.0" layoutY="21.0" promptText="rechercher" />
+      <Button fx:id="btnDelete" layoutX="476.0" layoutY="694.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="51.0" prefWidth="243.0" text="Supprimer" />
+      <Button fx:id="reply" layoutX="610.0" layoutY="393.0" mnemonicParsing="false" onAction="#Reply" prefHeight="36.0" prefWidth="111.0" text="Reply" />
+      <TextField fx:id="tsrechercher" layoutX="25.0" layoutY="395.0" prefHeight="31.0" prefWidth="537.0" promptText="Rechercher" />
+      <ImageView fitHeight="211.0" fitWidth="323.0" layoutX="538.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../../Desktop/logo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="304.0" layoutY="333.0" mnemonicParsing="false" onAction="#Imprimer" text="Imprimer" />
+      <Button layoutX="304.0" layoutY="776.0" mnemonicParsing="false" onAction="#retour_accueil" text="Retour  accueil" />
+      <ImageView fitHeight="52.0" fitWidth="33.0" layoutX="498.0" layoutY="703.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-delete-trash-50.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="50.0" layoutY="26.0" text="Id">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfId" layoutX="189.0" layoutY="29.0" prefHeight="31.0" prefWidth="294.0" />
+      <ListView fx:id="tvCommentaire" layoutX="24.0" layoutY="448.0" onMouseClicked="#handleMouseAction" prefHeight="228.0" prefWidth="537.0" />
    </children>
 </AnchorPane>

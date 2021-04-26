@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="814.0" prefWidth="775.0" style="-fx-background-color: bbdefb bbdefb;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="commentairecrud.TestController">
+   <children>
+      <VBox layoutX="70.0" layoutY="56.0" prefHeight="182.0" prefWidth="124.0" spacing="30.0">
+         <children>
+            <Label text="Commentaire_id" />
+            <Label text="Pseudo" />
+            <Label text="Rep" />
+            <Label text="Date_rep" />
+         </children>
+      </VBox>
+      <VBox layoutX="204.0" layoutY="51.0" prefHeight="184.0" prefWidth="299.0" spacing="20.0">
+         <children>
+            <TextField fx:id="tfCommentaire_id" />
+            <TextField fx:id="tfPseudo" />
+            <TextField fx:id="tfRep" />
+            <TextField fx:id="tfDate_rep" />
+         </children>
+      </VBox>
+      <Button fx:id="btnEmail" layoutX="616.0" layoutY="346.0" mnemonicParsing="false" onMouseClicked="#email" prefHeight="31.0" prefWidth="143.0" text="Envoyer un email" />
+      <Button layoutX="289.0" layoutY="757.0" mnemonicParsing="false" onAction="#retour" prefHeight="31.0" prefWidth="206.0" text="Retour aux questions" />
+      <Button fx:id="btnInsert" layoutX="555.0" layoutY="237.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="216.0" text="Ajouter votre réponse!">
+         <graphic>
+            <ImageView fitHeight="43.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons8-add-new-100.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnUpdate" layoutX="24.0" layoutY="668.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="299.0" text="Modifier votre réponse!" />
+      <ImageView fitHeight="77.0" fitWidth="37.0" layoutX="33.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-update-64.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnDelete" layoutX="460.0" layoutY="668.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="49.0" prefWidth="299.0" text="Supprimer" />
+      <ImageView fitHeight="65.0" fitWidth="26.0" layoutX="477.0" layoutY="680.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons8-delete-trash-50.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="tsrechercher" layoutX="24.0" layoutY="346.0" prefHeight="31.0" prefWidth="546.0" promptText="Rechercher" />
+      <Button layoutX="321.0" layoutY="302.0" mnemonicParsing="false" onAction="#Imprimer" text="Imprimer" />
+      <TextField fx:id="tfId" layoutX="204.0" layoutY="9.0" prefHeight="31.0" prefWidth="299.0" />
+      <ListView fx:id="tvReponse" layoutX="24.0" layoutY="389.0" onMouseClicked="#handleMouseAction" prefHeight="259.0" prefWidth="546.0" />
+      <Label layoutX="70.0" layoutY="14.0" text="Id" />
+   </children>
+</AnchorPane>

@@ -1,3 +1,5 @@
+package commentairecrud;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -60,6 +62,7 @@ public class EmailController implements Initializable {
         properties.put("mail.smtp.host","smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
         Session session=Session.getDefaultInstance(properties,new javax.mail.Authenticator() {
+            @Override
             protected PasswordAuthentication getPasswordAuthentication(){
                 return new PasswordAuthentication(fromemail, emailpassword);
             }
@@ -85,7 +88,7 @@ public class EmailController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-         Parent d_page = FXMLLoader.load(getClass().getResource("Reponse.fxml"));
+         Parent d_page = FXMLLoader.load(getClass().getResource("test.fxml"));
         Scene s = new Scene(d_page);
         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
  
@@ -93,5 +96,7 @@ public class EmailController implements Initializable {
                 app_stage.setScene(s);
                 app_stage.show();
     }
+    
+    
     
 }
