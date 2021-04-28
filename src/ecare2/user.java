@@ -9,13 +9,14 @@ package ecare2;
  *
  * @author alaaa
  */
-class user { 
+public class user { 
    private int id;
     private String login,roles,password,cin,sexe,nom,prenom,adresse,num_tel,email;
     private boolean is_verified;
     
-      public user(String login, String roles, String password, String cin, String sexe, String nom, String prenom, String adresse, String num_tel, String email, boolean is_verified) {
-        this.login = login;
+      public user(int id,String login, String roles, String password, String cin, String sexe, String nom, String prenom, String adresse, String num_tel, String email, boolean is_verified) {
+        this.id= id;
+          this.login = login;
         this.roles = roles;
         this.password = password;
         this.cin = cin;
@@ -28,8 +29,11 @@ class user {
         this.is_verified = is_verified;
     }
 
-    
+    user() {
+    }
 
+    user(int id) {
+    }
 
     public int getId() {
         return id;
@@ -126,7 +130,6 @@ class user {
     public void setIs_verified(boolean is_verified) {
         this.is_verified = is_verified;
     }
-
   
     
 }
